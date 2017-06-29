@@ -17,7 +17,7 @@ app.use(bodyPaser.urlencoded({ extended: false }))
 //    }
 //`);
 
-
+/*
 let helloWorld = edge.func(`
     using System.Threading.Tasks;
     
@@ -36,9 +36,9 @@ let helloWorld = edge.func(`
     public class Counter
     {
         public static Counter mCounter;
-        public int fuck = "";
+        public int fuck = 0;
         
-        public static GetInstance()
+        public static Counter GetInstance()
         {
             if(mCounter == null)
             {
@@ -49,16 +49,29 @@ let helloWorld = edge.func(`
         }
     }
 `);
+*/
+
+
+let helloWorld = edge.func({
+    assemblyFile: 'SCG_Nodejs_Server_API.dll',
+    typeName: 'SCG_Nodejs_Server_API.FuckScott',
+    methodName: 'FuckOff' // This must be Func<object,Task<object>>
+});
 
 app.post('/HelloWorld', function (req, res) {
+
+    console.log("Fuck Hello World");
 
     helloWorld('JavaScript', function (error, result) {
         if (error) throw error;
         console.log(result);
+
+        let Package_HelloWorld = { 'count': result, 'text': 'RESP_HelloWorld' }
+        let Package_HelloWorld_JSON = JSON.stringify(Package_HelloWorld)
+        console.log("Package_HelloWorld_JSON: " + Package_HelloWorld_JSON)
+
+        res.end(Package_HelloWorld_JSON);
     });
-
-    res.end(result);
-
 });
 
 
