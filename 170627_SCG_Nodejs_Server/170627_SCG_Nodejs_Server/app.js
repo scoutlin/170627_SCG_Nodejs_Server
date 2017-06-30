@@ -12,6 +12,34 @@ app.use(bodyPaser.json())
 app.use(bodyPaser.urlencoded({ extended: false }))
 
 
+let CreateUser = edge.func({
+    assemblyFile: 'lib/SCG_Nodejs_DataBase_API.dll',
+    typeName: 'SCG_Nodejs_DataBase_API.Bridge',
+    methodName: 'CreateUser' // This must be Func<object,Task<object>>
+})
+
+
+
+
+app.get('/Bingo', function (req, res) {
+
+    let value1 = req.query.value1;
+    let value2 = req.query.value2;
+
+    console.log("value1: " + value1)
+    console.log("value2: " + value2)
+
+    CreateUser('JavaScript', function (error, result) {
+        if (error) throw error;
+        console.log(result);
+    })
+
+    let mRESP = { "JSON": "Bindo is awesome!!" }
+    let mRESP_JSON = JSON.stringify(mRESP)
+
+    res.end(mRESP_JSON);
+});
+
 
 let helloWorld = edge.func({
     assemblyFile: 'lib/SCG_Nodejs_Server_API.dll',
@@ -54,8 +82,8 @@ app.post('/HelloWorld', function (req, res) {
 
         //res.send('Hello World')
         res.end(Packet_Version_JSON);
-    });
+    })
 
-    app.listen(3000);
+    app.listen(3000)
 
-    console.log('Yeah');
+    console.log('Yeah')
