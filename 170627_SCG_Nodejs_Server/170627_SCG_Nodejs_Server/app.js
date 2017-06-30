@@ -15,7 +15,7 @@ app.use(bodyPaser.urlencoded({ extended: false }))
 let CreateUser = edge.func({
     assemblyFile: 'lib/SCG_Nodejs_DataBase_API.dll',
     typeName: 'SCG_Nodejs_DataBase_API.Bridge',
-    methodName: 'ConnectDB' // This must be Func<object,Task<object>>
+    methodName: 'ConnectDB'
 })
 
 
