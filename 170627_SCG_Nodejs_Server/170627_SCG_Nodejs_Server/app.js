@@ -11,56 +11,17 @@ let app = express()
 app.use(bodyPaser.json())
 app.use(bodyPaser.urlencoded({ extended: false }))
 
-//let helloWorld = edge.func(`
-//    async (input) => { 
-//        return ".NET Welcomes " + input.ToString(); 
-//    }
-//`);
-
-/*
-let helloWorld = edge.func(`
-    using System.Threading.Tasks;
-    
-    public class Startup
-    {
-        public async Task<object> Invoke(object input)
-        {
-            Counter mCounter = Counter.GetInstance();
-
-            mCounter.fuck++;
-
-            return mCounter.fuck;
-        }
-    }
-
-    public class Counter
-    {
-        public static Counter mCounter;
-        public int fuck = 0;
-        
-        public static Counter GetInstance()
-        {
-            if(mCounter == null)
-            {
-                mCounter = new Counter();
-            }
-            
-            return mCounter;
-        }
-    }
-`);
-*/
 
 
 let helloWorld = edge.func({
-    assemblyFile: 'SCG_Nodejs_Server_API.dll',
-    typeName: 'SCG_Nodejs_Server_API.FuckScott',
-    methodName: 'FuckOff' // This must be Func<object,Task<object>>
+    assemblyFile: 'lib/SCG_Nodejs_Server_API.dll',
+    typeName: 'SCG_Nodejs_Server_API.Bridge',
+    methodName: 'PlusCounter' // This must be Func<object,Task<object>>
 });
 
 app.post('/HelloWorld', function (req, res) {
 
-    console.log("Fuck Hello World");
+    console.log("Hello World");
 
     helloWorld('JavaScript', function (error, result) {
         if (error) throw error;
