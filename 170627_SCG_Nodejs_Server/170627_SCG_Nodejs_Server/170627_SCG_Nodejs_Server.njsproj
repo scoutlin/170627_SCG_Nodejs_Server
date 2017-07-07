@@ -29,6 +29,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="ClassTest.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CommonSetting.js">
       <SubType>Code</SubType>
     </Compile>
