@@ -5,16 +5,24 @@ console.log('express-module Initial Start')
 let express = require('express')
 let bodyPaser = require('body-parser')
 //--------------------------------------
-//-------------------local-----------------------------
+//-------------------local module-----------------------------
 let serverModule = require('./server-module')
 let mogodbModule = require('./mongodb-module')
+//-----------------------------------------------------
+//-------------------router module---------------------
+let egsRouter = require('../routers/egs-router')
+let cgmRouter = require('../routers/cgm-router')
 //-----------------------------------------------------
 
 let app = express()
 app.use(bodyPaser.json())
 app.use(bodyPaser.urlencoded({ extended: false }))
 
+app.use('/egs-router', egsRouter)
+app.use('/cgm-router', cgmRouter)
 
+
+//------------------For Test--------------------------------------
 app.get('/Bingo', function (req, res) {
 
     let value1 = req.query.value1;
@@ -50,6 +58,11 @@ app.get('/HelloWorld', function (req, res) {
     });
 });
 
+app.get('/Test', function (req, res) {
+    res.send('Fuck!!!!!!!!!!!!!!!!!!')
+    res.end()
+})
+
 
 
 app.post('/ServerVersion', function (req, res) {
@@ -70,49 +83,7 @@ app.post('/ServerVersion', function (req, res) {
     //res.send('Hello World')
     res.end(Packet_Version_JSON);
 })
-
-
-//--------------------------GetKey----------------------
-app.post('/GetKey', function (req, res) {
-    
-})
-//------------------------------------------------------
-
-//--------------------------GetToken----------------------
-app.post('/GetToken', function (req, res) {
-
-})
-//------------------------------------------------------
-
-//--------------------------RegistNewMember----------------------
-app.post('/RegistNewMember', function (req, res) {
-
-})
-//------------------------------------------------------
-
-//--------------------------MemberLogin----------------------
-app.post('/MemberLogin', function (req, res) {
-
-})
-//------------------------------------------------------
-
-//--------------------------MemLogout----------------------
-app.post('/MemLogout', function (req, res) {
-
-})
-//------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
+//------------------------------------------------------------------------
 
 
 app.listen(3000)

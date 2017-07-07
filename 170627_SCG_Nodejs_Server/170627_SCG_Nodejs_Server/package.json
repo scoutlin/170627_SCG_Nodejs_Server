@@ -5,5 +5,11 @@
   "main": "app.js",
   "author": {
     "name": "ScottLin"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "body-parser": "^1.17.2",
+    "edge": "^7.10.1",
+    "express": "^4.15.3"
   }
 }
