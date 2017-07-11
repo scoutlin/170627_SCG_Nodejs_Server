@@ -46,7 +46,8 @@ app.get('/HelloWorld', function (req, res) {
 
     console.log("Hello World");
 
-    serverModule.HelloWorld('JavaScript', function (error, result) {
+    serverModule.HelloWorld('JavaScript', function (error, result)
+    {
         if (error) throw error;
         console.log(result);
 
@@ -58,17 +59,16 @@ app.get('/HelloWorld', function (req, res) {
     });
 });
 
-app.get('/Test', function (req, res) {
+app.get('/Test', function (req, res)
+{
     res.send('Fuck!!!!!!!!!!!!!!!!!!')
     res.end()
 })
 
 
 
-app.post('/ServerVersion', function (req, res) {
-
-    console.log("req.url: " + req.url);
-    console.log("HEADER: " + req.body.HEADER);
+app.post('/ServerVersion', function (req, res)
+{
     console.log("JSON: " + req.body.JSON);
 
     let Package_Version = { "version": "1.0.0", "bundle": "0" }
