@@ -69,11 +69,26 @@ app.get('/Test', function (req, res)
 
 app.post('/ServerVersion', function (req, res)
 {
-    console.log("JSON: " + req.body.JSON);
+    let reqBodyJSON = req.body.JSON;
+    //console.log('reqBodyJSON_json: ' + reqBodyJSON)
 
-    let Package_Version = { "version": "1.0.0", "bundle": "0" }
+    let reqMainPacket = JSON.parse(reqBodyJSON);
+    //console.log('reqMainPacket.enumCmd: ' + reqMainPacket.enumCmd);
+    //console.log('reqMainPacket.payload: ' + reqMainPacket.payload);
+
+    let serverVersionPacket = JSON.parse(reqMainPacket.payload);
+    //console.log('serverVersionPacket.version: ' + serverVersionPacket.version);
+    //console.log('serverVersionPacket.bundle: ' + serverVersionPacket.bundle);
+
+    //let Package_Version = { "version": "1.0.0", "bundle": "0" }
+    let Package_Version = { "version": "1.0.0", "bundle": serverVersionPacket.bundle }
     let Packet_Version_JSON = JSON.stringify(Package_Version)
-    console.log("Packet_Version_JSON: " + Packet_Version_JSON)
+    //console.log("Packet_Version_JSON: " + Packet_Version_JSON)
+
+    if ((serverVersionPacket.bundle % 100) == 0)
+    {
+        console.log('bundle: ' + serverVersionPacket.bundle + " Date: " + Date.now())
+    }
 
     //To Object
     //JSON.parse()
