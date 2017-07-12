@@ -35,13 +35,13 @@
     <Compile Include="CommonSetting.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module\express-module.js">
+    <Compile Include="module\express-module-loader.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module\server-module.js">
+    <Compile Include="module\server-module-loader.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module\mongodb-module.js">
+    <Compile Include="module\mongodb-module-loader.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="routers\cgm-router.js">

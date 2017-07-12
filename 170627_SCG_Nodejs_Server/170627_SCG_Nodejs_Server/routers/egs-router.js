@@ -20,6 +20,8 @@ router.get('/GetKey', function (req, res) {
 //--------------------------GetToken----------------------
 router.post('/GetToken', function (req, res) {
     console.log('GetToken')
+
+
 })
 //------------------------------------------------------
 

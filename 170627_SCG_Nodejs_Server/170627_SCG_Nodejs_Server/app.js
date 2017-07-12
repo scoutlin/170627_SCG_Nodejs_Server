@@ -4,7 +4,7 @@ console.log('app Start')
 //-------------------local-----------------------------
 let ClassTest = require('./ClassTest')
 let CommonSetting = require('./CommonSetting')
-let expressModule = require('./module/express-module')
+let expressModuleLoader = require('./module/express-module-loader')
 //-----------------------------------------------------
 
 let mClassTest = new ClassTest()

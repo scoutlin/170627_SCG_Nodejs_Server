@@ -6,8 +6,8 @@ let express = require('express')
 let bodyPaser = require('body-parser')
 //--------------------------------------
 //-------------------local module-----------------------------
-let serverModule = require('./server-module')
-let mogodbModule = require('./mongodb-module')
+let serverModule = require('./server-module-loader')
+let mogodbModule = require('./mongodb-module-loader')
 //-----------------------------------------------------
 //-------------------router module---------------------
 let egsRouter = require('../routers/egs-router')
@@ -46,13 +46,23 @@ app.get('/HelloWorld', function (req, res) {
 
     console.log("Hello World");
 
-    serverModule.HelloWorld('JavaScript', function (error, result)
+    var payload = {
+        anInteger: 1,
+        aNumber: 3.1415,
+        aString: 'foo',
+        aBoolean: true,
+        aBuffer: new Buffer(10),
+        anArray: [1, 'foo'],
+        anObject: { a: 'foo', b: 12 }
+    };
+
+    serverModule.HelloWorld(payload, function (error, result)
     {
         if (error) throw error;
         console.log(result);
 
-        let Package_HelloWorld = { 'count': result, 'text': 'RESP_HelloWorld' }
-        let Package_HelloWorld_JSON = JSON.stringify(Package_HelloWorld)
+        //let Package_HelloWorld = { 'count': result, 'text': 'RESP_HelloWorld' }
+        let Package_HelloWorld_JSON = JSON.stringify(result)
         console.log("Package_HelloWorld_JSON: " + Package_HelloWorld_JSON)
 
         res.end(Package_HelloWorld_JSON);
