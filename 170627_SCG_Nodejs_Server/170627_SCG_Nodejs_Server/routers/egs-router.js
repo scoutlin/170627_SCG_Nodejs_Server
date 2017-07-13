@@ -10,7 +10,8 @@ router.use(function timeLog(req, res, next) {
 })
 
 //--------------------------GetKey----------------------
-router.get('/GetKey', function (req, res) {
+router.get('/GetKey', function (req, res)
+{
     res.send('GetKey')
     res.end()
     console.log('GetKey')
@@ -18,7 +19,8 @@ router.get('/GetKey', function (req, res) {
 //------------------------------------------------------
 
 //--------------------------GetToken----------------------
-router.post('/GetToken', function (req, res) {
+router.post('/GetToken', function (req, res)
+{
     console.log('GetToken')
 
 
@@ -26,19 +28,22 @@ router.post('/GetToken', function (req, res) {
 //------------------------------------------------------
 
 //--------------------------RegistNewMember----------------------
-router.post('/RegistNewMember', function (req, res) {
+router.post('/RegistNewMember', function (req, res)
+{
     console.log('RegistNewMember')
 })
 //------------------------------------------------------
 
 //--------------------------MemberLogin----------------------
-router.post('/MemberLogin', function (req, res) {
+router.post('/MemberLogin', function (req, res)
+{
     console.log('MemberLogin')
 })
 //------------------------------------------------------
 
 //--------------------------MemLogout----------------------
-router.post('/MemLogout', function (req, res) {
+router.post('/MemLogout', function (req, res)
+{
     console.log('MemLogout')
 })
 //------------------------------------------------------

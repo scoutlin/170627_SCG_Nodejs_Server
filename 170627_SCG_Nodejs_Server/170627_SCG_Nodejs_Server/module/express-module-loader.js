@@ -95,10 +95,10 @@ app.post('/ServerVersion', function (req, res)
     let Packet_Version_JSON = JSON.stringify(Package_Version)
     //console.log("Packet_Version_JSON: " + Packet_Version_JSON)
 
-    if ((serverVersionPacket.bundle % 10000) == 0)
-    {
-        console.log('bundle: ' + serverVersionPacket.bundle/* + " Date: " + Date.now()*/)
-    }
+    //if ((serverVersionPacket.bundle % 10000) == 0)
+    //{
+    //    console.log('bundle: ' + serverVersionPacket.bundle/* + " Date: " + Date.now()*/)
+    //}
 
     //To Object
     //JSON.parse()
