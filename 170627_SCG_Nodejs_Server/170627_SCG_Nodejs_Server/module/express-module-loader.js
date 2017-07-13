@@ -46,7 +46,7 @@ app.get('/HelloWorld', function (req, res) {
 
     console.log("Hello World");
 
-    var payload = {
+    let payload = {
         anInteger: 1,
         aNumber: 3.1415,
         aString: 'foo',

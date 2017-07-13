@@ -1,20 +1,59 @@
 ﻿'use strict'
 console.log('egs-router Initial Start')
 
-var express = require('express')
-var router = express.Router()
+//--------------------npm---------------
+let express = require('express')
+//--------------------------------------
+//-------------------local module-----------------------------
+let serverModule = require('../module/server-module-loader')
+let mogodbModule = require('../module/mongodb-module-loader')
+//-----------------------------------------------------
+
+let router = express.Router()
 
 router.use(function timeLog(req, res, next) {
     console.log('Time: ', Date.now())
     next()
 })
 
+serverModule.CreateRSAKey("", function (error, result) {
+
+    console.log('CreateRSAKey Complete: ' + result)
+})
+
+
+
 //--------------------------GetKey----------------------
-router.get('/GetKey', function (req, res)
+router.post('/GetKey', function (req, res)
 {
-    res.send('GetKey')
-    res.end()
     console.log('GetKey')
+
+    //Receive
+    let reqMainPacket = JSON.parse(req.body.JSON);
+    console.log('reqMainPacket.cmd: ' + reqMainPacket.cmd);
+    console.log('reqMainPacket.payload: ' + reqMainPacket.payload);
+
+    let reqGetKeyPacket = JSON.parse(reqMainPacket.payload);
+    console.log('reqGetKeyPacket.publicRSAKeyString: ' + reqGetKeyPacket.publicRSAKeyString);
+
+    let publicRSAKeyString = ""
+
+    serverModule.GetPublicKeyString("", function (error, result)
+    {
+        publicRSAKeyString = result
+    })
+
+    //SendBack
+    let respGetKeyPacket = { "publicRSAKeyString": publicRSAKeyString }
+    let respMainPacket = {
+        "cmd": "EGS_Router_GetKey",
+        "isError": false,
+        "payload": JSON.stringify(respGetKeyPacket)
+    }
+
+    let respGetKeyPacketJson = JSON.stringify(respMainPacket)
+
+    res.end(respGetKeyPacketJson)  
 })
 //------------------------------------------------------
 
