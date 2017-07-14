@@ -17,20 +17,20 @@ exports.CreateRSAKey = edge.func({
     typeName: 'SCG_Nodejs_Server_API.BridgeCryptography',
     methodName: 'CreateRSAKey' // This must be Func<object,Task<object>>
 });
-exports.GetPublicKeyString = edge.func({
+exports.GetRSAPublicKeyLocalString = edge.func({
     assemblyFile: 'lib/SCG_Nodejs_Server_API.dll',
     typeName: 'SCG_Nodejs_Server_API.BridgeCryptography',
-    methodName: 'GetPublicKeyString' // This must be Func<object,Task<object>>
+    methodName: 'GetRSAPublicKeyLocalString' // This must be Func<object,Task<object>>
 });
-exports.Encrypt = edge.func({
+exports.RSAEncrypt = edge.func({
     assemblyFile: 'lib/SCG_Nodejs_Server_API.dll',
     typeName: 'SCG_Nodejs_Server_API.BridgeCryptography',
-    methodName: 'Encrypt' // This must be Func<object,Task<object>>
+    methodName: 'RSAEncrypt' // This must be Func<object,Task<object>>
 });
-exports.Decrypt = edge.func({
+exports.RSADecrypt = edge.func({
     assemblyFile: 'lib/SCG_Nodejs_Server_API.dll',
     typeName: 'SCG_Nodejs_Server_API.BridgeCryptography',
-    methodName: 'Decrypt' // This must be Func<object,Task<object>>
+    methodName: 'RSADecrypt' // This must be Func<object,Task<object>>
 });
 //------------------------------------------------------------------------
 console.log('server-module Initial Done')

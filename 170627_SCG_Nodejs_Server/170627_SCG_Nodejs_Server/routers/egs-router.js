@@ -11,15 +11,18 @@ let mogodbModule = require('../module/mongodb-module-loader')
 
 let router = express.Router()
 
-router.use(function timeLog(req, res, next) {
+router.use(function timeLog(req, res, next)
+{
     console.log('Time: ', Date.now())
     next()
 })
 
 serverModule.CreateRSAKey("", function (error, result) {
 
-    console.log('CreateRSAKey Complete: ' + result)
+    console.log('CreateRSAKey: ' + result)
 })
+
+
 
 
 
@@ -38,9 +41,10 @@ router.post('/GetKey', function (req, res)
 
     let publicRSAKeyString = ""
 
-    serverModule.GetPublicKeyString("", function (error, result)
+    serverModule.GetRSAPublicKeyLocalString("", function (error, result)
     {
         publicRSAKeyString = result
+        console.log(publicRSAKeyString);
     })
 
     //SendBack
