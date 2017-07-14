@@ -27,30 +27,30 @@ serverModule.CreateRSAKey("", function (error, result) {
 
 
 //--------------------------GetKey----------------------
-router.post('/GetKey', function (req, res)
+router.post('/GetRSAKey', function (req, res)
 {
-    console.log('GetKey')
+    console.log('GetRSAKey')
 
     //Receive
     let reqMainPacket = JSON.parse(req.body.JSON);
     console.log('reqMainPacket.cmd: ' + reqMainPacket.cmd);
-    console.log('reqMainPacket.payload: ' + reqMainPacket.payload);
+    //console.log('reqMainPacket.payload: ' + reqMainPacket.payload);
 
     let reqGetKeyPacket = JSON.parse(reqMainPacket.payload);
-    console.log('reqGetKeyPacket.publicRSAKeyString: ' + reqGetKeyPacket.publicRSAKeyString);
+    //console.log('reqGetKeyPacket.publicRSAKeyString: ' + reqGetKeyPacket.publicRSAKeyString);
 
-    let publicRSAKeyString = ""
+    let publicRSAKeyString = ''
 
     serverModule.GetRSAPublicKeyLocalString("", function (error, result)
     {
         publicRSAKeyString = result
-        console.log(publicRSAKeyString);
+        //console.log(publicRSAKeyString);
     })
 
     //SendBack
     let respGetKeyPacket = { "publicRSAKeyString": publicRSAKeyString }
     let respMainPacket = {
-        "cmd": "EGS_Router_GetKey",
+        "cmd": "EGS_Router_GetRSAKey",
         "isError": false,
         "payload": JSON.stringify(respGetKeyPacket)
     }
@@ -58,14 +58,69 @@ router.post('/GetKey', function (req, res)
     let respGetKeyPacketJson = JSON.stringify(respMainPacket)
 
     res.end(respGetKeyPacketJson)  
+
+    console.log('GetRSAKey Complete');
 })
 //------------------------------------------------------
 
 //--------------------------GetToken----------------------
 router.post('/GetToken', function (req, res)
 {
-    console.log('GetToken')
+    console.log('Into GetToken')
 
+    //Receive
+    let reqMainPacket = JSON.parse(req.body.JSON);
+    console.log('reqMainPacket.cmd: ' + reqMainPacket.cmd);
+
+    let reqGetToken = JSON.parse(reqMainPacket.payload);
+
+    console.log('reqGetToken.account: ' + reqGetToken.account);
+    console.log('reqGetToken.password: ' +reqGetToken.password);
+    console.log('reqGetToken.key: ' +reqGetToken.key);
+    console.log('reqGetToken.iv: ' + reqGetToken.iv);
+
+    let account = ''
+    let password = ''
+    let key = ''
+    let iv = ''
+
+    serverModule.RSADecrypt(reqGetToken.account, function (error, result) {
+
+        let account = result
+        console.log(account)
+    })
+
+    serverModule.RSADecrypt(reqGetToken.password, function (error, result) {
+        let password = result
+        console.log(password)
+    })
+
+    serverModule.RSADecrypt(reqGetToken.key, function (error, result) {
+        let key = result
+        console.log(key)
+    })
+
+    serverModule.RSADecrypt(reqGetToken.iv, function (error, result) {
+        let iv = result
+        console.log(iv)
+    })
+
+    console.log('account: ' + account);
+    console.log('password: ' + password);
+    console.log('key: ' + key);
+    console.log('iv: ' + iv);
+
+
+    let respGetTokenPacket = { "token": "Yeah!!" }
+    let respMainPacket = {
+        "cmd": "EGS_Router_GetToken",
+        "isError": false,
+        "payload": JSON.stringify(respGetTokenPacket)
+    }
+
+    let respGetKeyPacketJson = JSON.stringify(respMainPacket)
+
+    res.end(respGetKeyPacketJson)  
 
 })
 //------------------------------------------------------
