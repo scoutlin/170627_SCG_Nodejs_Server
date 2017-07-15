@@ -17,12 +17,20 @@ router.use(function timeLog(req, res, next)
     next()
 })
 
-serverModule.CreateRSAKey("", function (error, result) {
+serverModule.CreateRSAKey(null, function (error, result) {
 
     console.log('CreateRSAKey: ' + result)
+
+    serverModule.GetRSAPublicKey("local", function (error, result) {
+
+        console.log('GetRSAPublicKey: ' + result)
+
+        serverModule.GetRSAPublicKeyString(result, function (error, result) {
+
+            console.log('GetRSAPublicKeyString: ' + result)
+        })
+    })
 })
-
-
 
 
 
