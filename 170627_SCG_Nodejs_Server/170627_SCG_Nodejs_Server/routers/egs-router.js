@@ -11,127 +11,47 @@ let mogodbModule = require('../module/mongodb-module-loader')
 
 let router = express.Router()
 
+//Sample
 router.use(function timeLog(req, res, next)
 {
     console.log('Time: ', Date.now())
     next()
 })
 
-serverModule.CreateRSAKey(null, function (error, result) {
-
-    console.log('CreateRSAKey: ' + result)
-
-    serverModule.GetRSAPublicKey("local", function (error, result) {
-
-        console.log('GetRSAPublicKey: ' + result)
-
-        serverModule.GetRSAPublicKeyString(result, function (error, result) {
-
-            console.log('GetRSAPublicKeyString: ' + result)
-        })
-    })
+//------------------------------Init---------------------------------------------
+//Create Local RSA Key
+let isCreateRSAKeySuccess = false
+serverModule.CreateRSAKey(null, function (error, result)
+{
+    isCreateRSAKeySuccess = result
 })
+console.log('egs-router - 26 - isCreateRSAKeySuccess: ' + isCreateRSAKeySuccess)
+//-------------------------------------------------------------------------------
 
 
-
-//--------------------------GetKey----------------------
+//--------------------------GetRSAKey----------------------
 router.post('/GetRSAKey', function (req, res)
 {
-    console.log('GetRSAKey')
+    let jsonRespMainPacket = null;
 
-    //Receive
-    let reqMainPacket = JSON.parse(req.body.JSON);
-    console.log('reqMainPacket.cmd: ' + reqMainPacket.cmd);
-    //console.log('reqMainPacket.payload: ' + reqMainPacket.payload);
-
-    let reqGetKeyPacket = JSON.parse(reqMainPacket.payload);
-    //console.log('reqGetKeyPacket.publicRSAKeyString: ' + reqGetKeyPacket.publicRSAKeyString);
-
-    let publicRSAKeyString = ''
-
-    serverModule.GetRSAPublicKeyLocalString("", function (error, result)
+    //pass to PacketParser
+    serverModule.ProcessPacket(req.body.JSON, function (error, result)
     {
-        publicRSAKeyString = result
-        //console.log(publicRSAKeyString);
+        jsonRespMainPacket = result
     })
 
-    //SendBack
-    let respGetKeyPacket = { "publicRSAKeyString": publicRSAKeyString }
-    let respMainPacket = {
-        "cmd": "EGS_Router_GetRSAKey",
-        "isError": false,
-        "payload": JSON.stringify(respGetKeyPacket)
-    }
-
-    let respGetKeyPacketJson = JSON.stringify(respMainPacket)
-
-    res.end(respGetKeyPacketJson)  
-
+    res.end(jsonRespMainPacket);
     console.log('GetRSAKey Complete');
 })
 //------------------------------------------------------
 
-//--------------------------GetToken----------------------
-router.post('/GetToken', function (req, res)
+//--------------------------GetAESKey----------------------------
+router.post('/GetAESKey', function (req, res)
 {
-    console.log('Into GetToken')
-
-    //Receive
-    let reqMainPacket = JSON.parse(req.body.JSON);
-    console.log('reqMainPacket.cmd: ' + reqMainPacket.cmd);
-
-    let reqGetToken = JSON.parse(reqMainPacket.payload);
-
-    console.log('reqGetToken.account: ' + reqGetToken.account);
-    console.log('reqGetToken.password: ' +reqGetToken.password);
-    console.log('reqGetToken.key: ' +reqGetToken.key);
-    console.log('reqGetToken.iv: ' + reqGetToken.iv);
-
-    let account = ''
-    let password = ''
-    let key = ''
-    let iv = ''
-
-    serverModule.RSADecrypt(reqGetToken.account, function (error, result) {
-
-        let account = result
-        console.log(account)
-    })
-
-    serverModule.RSADecrypt(reqGetToken.password, function (error, result) {
-        let password = result
-        console.log(password)
-    })
-
-    serverModule.RSADecrypt(reqGetToken.key, function (error, result) {
-        let key = result
-        console.log(key)
-    })
-
-    serverModule.RSADecrypt(reqGetToken.iv, function (error, result) {
-        let iv = result
-        console.log(iv)
-    })
-
-    console.log('account: ' + account);
-    console.log('password: ' + password);
-    console.log('key: ' + key);
-    console.log('iv: ' + iv);
-
-
-    let respGetTokenPacket = { "token": "Yeah!!" }
-    let respMainPacket = {
-        "cmd": "EGS_Router_GetToken",
-        "isError": false,
-        "payload": JSON.stringify(respGetTokenPacket)
-    }
-
-    let respGetKeyPacketJson = JSON.stringify(respMainPacket)
-
-    res.end(respGetKeyPacketJson)  
+    
 
 })
-//------------------------------------------------------
+//------------------------------------------------------------
 
 //--------------------------RegistNewMember----------------------
 router.post('/RegistNewMember', function (req, res)
