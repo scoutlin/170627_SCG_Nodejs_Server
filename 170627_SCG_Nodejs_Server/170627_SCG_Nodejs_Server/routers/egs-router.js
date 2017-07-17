@@ -18,19 +18,8 @@ router.use(function timeLog(req, res, next)
     next()
 })
 
-//------------------------------Init---------------------------------------------
-//Create Local RSA Key
-let isCreateRSAKeySuccess = false
-serverModule.CreateRSAKey(null, function (error, result)
-{
-    isCreateRSAKeySuccess = result
-})
-console.log('egs-router - 26 - isCreateRSAKeySuccess: ' + isCreateRSAKeySuccess)
-//-------------------------------------------------------------------------------
-
-
 //--------------------------GetRSAKey----------------------
-router.post('/GetRSAKey', function (req, res)
+router.post('/', function (req, res)
 {
     let jsonRespMainPacket = null;
 
@@ -42,35 +31,6 @@ router.post('/GetRSAKey', function (req, res)
 
     res.end(jsonRespMainPacket);
     console.log('GetRSAKey Complete');
-})
-//------------------------------------------------------
-
-//--------------------------GetAESKey----------------------------
-router.post('/GetAESKey', function (req, res)
-{
-    
-
-})
-//------------------------------------------------------------
-
-//--------------------------RegistNewMember----------------------
-router.post('/RegistNewMember', function (req, res)
-{
-    console.log('RegistNewMember')
-})
-//------------------------------------------------------
-
-//--------------------------MemberLogin----------------------
-router.post('/MemberLogin', function (req, res)
-{
-    console.log('MemberLogin')
-})
-//------------------------------------------------------
-
-//--------------------------MemLogout----------------------
-router.post('/MemLogout', function (req, res)
-{
-    console.log('MemLogout')
 })
 //------------------------------------------------------
 

@@ -21,6 +21,13 @@ app.use(bodyPaser.urlencoded({ extended: false }))
 app.use('/egs-router', egsRouter)
 app.use('/cgm-router', cgmRouter)
 
+//---------------------------Init All Bridge Module-------------------------------------------
+//Create Local RSA Key
+serverModule.CreateRSAKey(null, function (error, result) {    
+})
+
+//-------------------------------------------------------------------------------------------
+
 
 //------------------For Test--------------------------------------
 app.get('/Bingo', function (req, res) {
