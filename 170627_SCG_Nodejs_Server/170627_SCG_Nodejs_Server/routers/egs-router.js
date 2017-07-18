@@ -30,7 +30,7 @@ router.post('/', function (req, res)
     })
 
     res.end(jsonRespMainPacket);
-    console.log('GetRSAKey Complete');
+    console.log('GetRSAKey Complete \n');
 })
 //------------------------------------------------------
 

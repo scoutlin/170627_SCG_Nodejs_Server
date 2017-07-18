@@ -23,9 +23,14 @@ app.use('/cgm-router', cgmRouter)
 
 //---------------------------Init All Bridge Module-------------------------------------------
 //Create Local RSA Key
-serverModule.CreateRSAKey(null, function (error, result) {    
+serverModule.CreateRSAKey(null, function (error, result) {
+    if (result == true) {
+        console.log('RSAKey Create Success!!')
+    }
+    else {
+        console.log('RSAKey Create Fail!!');
+    }
 })
-
 //-------------------------------------------------------------------------------------------
 
 
