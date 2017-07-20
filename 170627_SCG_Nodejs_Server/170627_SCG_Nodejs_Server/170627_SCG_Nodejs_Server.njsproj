@@ -38,10 +38,7 @@
     <Compile Include="module\express-module-loader.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module\server-module-loader.js">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="module\mongodb-module-loader.js">
+    <Compile Include="module\egs-module-loader.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="routers\cgm-router.js">

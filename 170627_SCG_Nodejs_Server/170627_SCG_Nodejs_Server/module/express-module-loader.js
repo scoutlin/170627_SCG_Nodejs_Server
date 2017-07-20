@@ -6,8 +6,7 @@ let express = require('express')
 let bodyPaser = require('body-parser')
 //--------------------------------------
 //-------------------local module-----------------------------
-let serverModule = require('./server-module-loader')
-let mogodbModule = require('./mongodb-module-loader')
+let serverModule = require('./egs-module-loader')
 //-----------------------------------------------------
 //-------------------router module---------------------
 let egsRouter = require('../routers/egs-router')
@@ -22,6 +21,7 @@ app.use('/egs-router', egsRouter)
 app.use('/cgm-router', cgmRouter)
 
 //---------------------------Init All Bridge Module-------------------------------------------
+
 //Create Local RSA Key
 serverModule.CreateRSAKey(null, function (error, result) {
     if (result == true) {

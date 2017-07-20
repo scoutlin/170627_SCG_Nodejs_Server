@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "170627_SCG_Nodejs_Server", "170627_SCG_Nodejs_Server\170627_SCG_Nodejs_Server.njsproj", "{C4F7B43D-3BE7-403D-AEB3-C9ACE5AA6966}"
 EndProject

@@ -5,8 +5,7 @@ console.log('egs-router Initial Start')
 let express = require('express')
 //--------------------------------------
 //-------------------local module-----------------------------
-let serverModule = require('../module/server-module-loader')
-let mogodbModule = require('../module/mongodb-module-loader')
+let serverModule = require('../module/egs-module-loader')
 //-----------------------------------------------------
 
 let router = express.Router()
