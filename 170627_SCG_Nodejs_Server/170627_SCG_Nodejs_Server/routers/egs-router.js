@@ -13,7 +13,6 @@ let router = express.Router()
 
 
 //---------------------------Init All Module-------------------------------------------
-
 //Init MongoDB
 serverModule.InitMongoDB("mongodb://Egaming000:Jumbo_12718984@egaming000-shard-00-00-spjyl.mongodb.net:27017,egaming000-shard-00-01-spjyl.mongodb.net:27017,egaming000-shard-00-02-spjyl.mongodb.net:27017/Egaming?ssl=true&replicaSet=Egaming000-shard-0&authSource=admin", function (error, result) {
     if (result == true) {

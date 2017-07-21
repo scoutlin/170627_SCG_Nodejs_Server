@@ -12,7 +12,6 @@ exports.HelloWorld = edge.func({
     methodName: 'HelloWorld' // This must be Func<object,Task<object>>
 });
 //------------------------------------------------------------------------
-
 //---------------------------Bridge InitServer------------------------------------------
 exports.InitServer = edge.func({
     assemblyFile: 'lib/EgamingServerController.dll',
