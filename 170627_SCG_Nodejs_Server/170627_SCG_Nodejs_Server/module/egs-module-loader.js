@@ -4,6 +4,7 @@ console.log('server-module Initial Start')
 
 let edge = require('edge')
 
+//-------------------------Load Bridge-----------------------------------------------
 //-----------------------------Bridge Test---------------------------------
 exports.HelloWorld = edge.func({
     assemblyFile: 'lib/EgamingServerController.dll',
@@ -12,11 +13,21 @@ exports.HelloWorld = edge.func({
 });
 //------------------------------------------------------------------------
 
-//---------------------------Bridge Cryptography------------------------------------------
-exports.CreateRSAKey = edge.func({
+//---------------------------Bridge InitServer------------------------------------------
+exports.InitServer = edge.func({
     assemblyFile: 'lib/EgamingServerController.dll',
-    typeName: 'EgamingServerController.BridgeCryptography',
-    methodName: 'CreateRSAKey' // This must be Func<object,Task<object>>
+    typeName: 'EgamingServerController.BridgeInitServer',
+    methodName: 'InitServer' // This must be Func<object,Task<object>>
+});
+exports.InitCryptography = edge.func({
+    assemblyFile: 'lib/EgamingServerController.dll',
+    typeName: 'EgamingServerController.BridgeInitServer',
+    methodName: 'InitCryptography' // This must be Func<object,Task<object>>
+});
+exports.InitMongoDB = edge.func({
+    assemblyFile: 'lib/EgamingServerController.dll',
+    typeName: 'EgamingServerController.BridgeInitServer',
+    methodName: 'InitMongoDB' // This must be Func<object,Task<object>>
 });
 //-----------------------------------------------------------------------------------------
 //---------------------------Bridge PacketParser---------------------------------------------
@@ -26,8 +37,7 @@ exports.ProcessPacket = edge.func({
     methodName: 'ProcessPacket' // This must be Func<object,Task<object>>
 });
 //---------------------------------------------------------------------------------------------
-
-
+//-----------------------------------------------------------------------------------------------
 
 
 console.log('server-module Initial Done')

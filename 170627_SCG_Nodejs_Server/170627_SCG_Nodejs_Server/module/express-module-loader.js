@@ -5,9 +5,6 @@ console.log('express-module Initial Start')
 let express = require('express')
 let bodyPaser = require('body-parser')
 //--------------------------------------
-//-------------------local module-----------------------------
-let serverModule = require('./egs-module-loader')
-//-----------------------------------------------------
 //-------------------router module---------------------
 let egsRouter = require('../routers/egs-router')
 let cgmRouter = require('../routers/cgm-router')
@@ -19,19 +16,6 @@ app.use(bodyPaser.urlencoded({ extended: false }))
 
 app.use('/egs-router', egsRouter)
 app.use('/cgm-router', cgmRouter)
-
-//---------------------------Init All Bridge Module-------------------------------------------
-
-//Create Local RSA Key
-serverModule.CreateRSAKey(null, function (error, result) {
-    if (result == true) {
-        console.log('RSAKey Create Success!!')
-    }
-    else {
-        console.log('RSAKey Create Fail!!');
-    }
-})
-//-------------------------------------------------------------------------------------------
 
 
 //------------------For Test--------------------------------------
