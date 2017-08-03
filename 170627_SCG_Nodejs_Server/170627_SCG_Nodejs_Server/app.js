@@ -7,6 +7,8 @@ let CommonSetting = require('./CommonSetting')
 let expressModuleLoader = require('./module/express-module-loader')
 //-----------------------------------------------------
 
+//-----------------Class Test with ClassTest.js----------------
+//------------------------Start--------------------------------
 let mClassTest = new ClassTest()
 mClassTest.OhYeah('!!!!!!!!!!!!!!YEAH!!!!!!!!!!!!!!!')
 ClassTest.StaticOhYeah('Static Yeah')
@@ -20,5 +22,6 @@ console.log('yeah: ' + mClassTest2.yeah);
 let mClassTest3 = ClassTest.Instance
 mClassTest3.yeah++
 console.log('yeah: ' + mClassTest3.yeah)
+//----------------------End--------------------------------------
 
 console.log('Yeah')
