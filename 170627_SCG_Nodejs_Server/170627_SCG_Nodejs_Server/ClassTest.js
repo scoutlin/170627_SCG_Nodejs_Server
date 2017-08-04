@@ -27,6 +27,7 @@ class ClassTest {
     }
 }
 
+//Static Variable
 ClassTest.staticVariable001 = 'S1';
 
 module.exports = ClassTest

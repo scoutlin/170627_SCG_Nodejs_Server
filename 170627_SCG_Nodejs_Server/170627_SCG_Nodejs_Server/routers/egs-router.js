@@ -22,6 +22,13 @@ serverModule.InitMongoDB("mongodb://Egaming000:Jumbo_12718984@egaming000-shard-0
         console.log('MongoDB Init Fail!!');
     }
 })
+
+//Init M2MqttClient
+let IPandPortForConnectToMqttServer = "192.168.133.196";
+serverModule.InitM2MqttClient(IPandPortForConnectToMqttServer, function (error, result)
+{
+    console.log("API - egs-router - InitM2MqttClient - result: " + result);
+})
 //-------------------------------------------------------------------------------------------
 
 
