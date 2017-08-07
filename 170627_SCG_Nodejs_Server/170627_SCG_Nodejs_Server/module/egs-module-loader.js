@@ -29,6 +29,11 @@ exports.InitMongoDB = edge.func({
     typeName: 'EgamingServerController.BridgeInitServer',
     methodName: 'InitMongoDB' // This must be Func<object,Task<object>>
 });
+exports.InitM2MqttClient = edge.func({
+    assemblyFile: 'lib/EgamingServerController.dll',
+    typeName: 'EgamingServerController.BridgeInitServer',
+    methodName: 'InitM2MqttClinet' // This must be Func<object,Task<object>>
+});
 //-----------------------------------------------------------------------------------------
 
 //---------------------------Bridge PacketParser---------------------------------------------
@@ -38,14 +43,6 @@ exports.ProcessPacket = edge.func({
     methodName: 'ProcessPacket' // This must be Func<object,Task<object>>
 });
 //---------------------------------------------------------------------------------------------
-
-//----------------------------Bridge M2Mqtt--------------------------------------------------------
-exports.InitM2MqttClient = edge.func({
-    assemblyFile: 'lib/M2MqttClientModel.dll',
-    typeName: 'M2MqttClientModel.Bridge',
-    methodName: 'InitM2MqttClinet' // This must be Func<object,Task<object>>
-});
-//------------------------------------------------------------------------------------------
 
 
 console.log('server-module Initial Done')
