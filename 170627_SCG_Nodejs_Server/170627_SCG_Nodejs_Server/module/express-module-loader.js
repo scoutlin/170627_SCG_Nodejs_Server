@@ -48,12 +48,21 @@ let options = {
     cert: fs.readFileSync(__dirname + '/Certificate/server.crt')
 }
 
+//spdy.createServer(options, app).listen(portHttps, function (error) {
+//    if (error) {
+//        console.error(error)
+//        return process.exit(1)
+//    } else {
+//        console.log('Listening on portHttps: ' + portHttps +'.')
+//    }
+//})
+
 spdy.createServer(options, app).listen(portHttps, function (error) {
     if (error) {
         console.error(error)
         return process.exit(1)
     } else {
-        console.log('Listening on portHttps: ' + portHttps +'.')
+        console.log('Listening on portHttps: ' + portHttps + '.')
     }
 })
 

@@ -23,14 +23,14 @@ serverModule.InitMongoDB("mongodb://Egaming000:Jumbo_12718984@egaming000-shard-0
     }
 })
 
-//Init M2MqttClient
-//let IPandPortForConnectToMqttServer = "169.254.14.241";
-let IPandPortForConnectToMqttServer = "192.168.122.72";
-serverModule.InitM2MqttClient(IPandPortForConnectToMqttServer, function (error, result)
-{
-    console.log("API - egs-router - InitM2MqttClient - result: " + result);
-})
-//-------------------------------------------------------------------------------------------
+////Init M2MqttClient
+////let IPandPortForConnectToMqttServer = "169.254.14.241";
+//let IPandPortForConnectToMqttServer = "192.168.122.145";
+//serverModule.InitM2MqttClient(IPandPortForConnectToMqttServer, function (error, result)
+//{
+//    console.log("API - egs-router - InitM2MqttClient - result: " + result);
+//})
+////-------------------------------------------------------------------------------------------
 
 
 
